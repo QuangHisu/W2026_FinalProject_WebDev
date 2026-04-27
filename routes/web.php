@@ -7,7 +7,7 @@ use App\Http\Controllers\ShipmentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('shipments.index');
+    return view('home');
 });
 
 Route::get('/orders/edit', [OrderController::class, 'edit'])->name('orders.edit');

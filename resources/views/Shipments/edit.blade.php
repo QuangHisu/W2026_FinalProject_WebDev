@@ -2,17 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Delivery System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Shipments</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        table {
+            width: 95%;
+            margin: auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        tr:hover {
+            background: #f1f1f1;
+        }
+        select {
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .btn-save {
+            display: block;
+            width: 200px;
+            margin: 25px auto;
+            padding: 12px;
+            background: #28a745;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .btn-save:hover {
+            background: #1e7e34;
+        }
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 12px;
+            background: #6c757d;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .back-btn:hover {
+            background: #545b62;
+        }
+    </style>
 </head>
+
 <body>
+
 <h1>Edit Shipments</h1>
-<form action="{{route('shipments.update')}}" method="post">
-    <table border="1" cellpadding="10">
-        @csrf
-        @method('PUT')
+
+<form action="{{ route('shipments.update') }}" method="post">
+    @csrf
+    @method('PUT')
+
+    <table>
         <tr>
             <th>ID</th>
             <th>Order ID</th>
@@ -21,13 +89,15 @@
             <th>Service</th>
             <th>Status</th>
         </tr>
+
         @foreach($shipments as $shipment)
             <tr>
-                <td>{{$shipment->id}}</td>
-                <td>{{$shipment->order_id}}</td>
-                <td>{{$shipment->price}}</td>
-                <td>{{$shipment->order->currency}}</td>
-                <td>{{$shipment->serviceLabel()}}</td>
+                <td>{{ $shipment->id }}</td>
+                <td>{{ $shipment->order_id }}</td>
+                <td>{{ $shipment->price }}</td>
+                <td>{{ $shipment->order->currency }}</td>
+                <td>{{ $shipment->serviceLabel() }}</td>
+
                 <td>
                     <select name="statuses[{{ $shipment->id }}]">
                         @foreach ($statuses as $status)
@@ -40,12 +110,14 @@
                 </td>
             </tr>
         @endforeach
+
     </table>
-    <button type="submit">Save</button>
+
+    <button class="btn-save" type="submit">Save Changes</button>
 </form>
 
-<form action="{{route('shipments.index')}}">
-    <button type="submit">Back to Index</button>
+<form action="{{ route('shipments.index') }}">
+    <button class="back-btn" type="submit">Back to Shipments</button>
 </form>
 
 </body>
