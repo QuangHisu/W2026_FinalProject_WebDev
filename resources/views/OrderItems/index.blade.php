@@ -125,6 +125,20 @@
         </tr>
     @endforeach
 </table>
-
+<form action="{{ route('home') }}">
+    <button type="submit"
+            style="
+                margin-top:20px;
+                padding:12px 20px;
+                background:#343a40;
+                color:white;
+                border:none;
+                border-radius:6px;
+                cursor:pointer;
+                font-size:16px;
+            ">
+        Back to Home
+    </button>
+</form>
 </body>
 </html>
