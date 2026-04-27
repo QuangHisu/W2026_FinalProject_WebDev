@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/orders/edit', [OrderController::class, 'edit'])->name('orders.edit');
 Route::put('/orders/update', [OrderController::class, 'update'])->name('orders.update');
